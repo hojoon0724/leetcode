@@ -4,38 +4,24 @@
  */
 
 function longestCommonPrefix(strs) {
-  // if strs is empty
-  if (strs.length === 0 || strs[0].length === 0) {
-    return strs[0];
-  }
+  //edge case
+  if (!strs.length) return '';
 
-  let test = strs[0].split('');
-  let fragmentArr = [];
+  //set first word as prefix
+  let prefix = strs[0];
 
-  let i = 0;
-
-  while (i < test.length) {
-    fragmentArr.push(test[i]);
-    let fragment = fragmentArr.join('');
-    console.log(`iteration: ${i} ${fragment}`);
-
-    for (j = 1; j < strs.length; j++) {
-      console.log(`fragment: ${fragment} - string: ${strs[j]}`);
-      console.log(`does it start with ${fragment} = ${strs[j].startsWith(fragment)}`);
-      console.log('');
-      if (strs[j].startsWith(fragment) === false) {
-        console.log(`failed condition - ${fragmentArr}`);
-        fragmentArr.pop();
-        console.log(`after pop ${fragmentArr}`);
-        j = strs.length + 1;
-        console.log(`set the iteration to ${i}`);
-        console.log(`it should stop the string test after here`);
-        return fragmentArr.join('');
-      } else {
-      }
+  //start comparing with other words beginning from the second word
+  for (let i = 1; i < strs.length; i++) {
+    //gets the test word and finds where the match begins
+    //if it doesn't begin with the prefix...
+    while (strs[i].indexOf(prefix) !== 0) {
+      //change prefix using 'substring'
+      //'substring(start, end) -- reduces by 1 character
+      prefix = prefix.substring(0, prefix.length - 1);
+      console.log(!prefix);
+      //checks if prefix is a falsy value
+      if (!prefix) return '';
     }
-    i++;
   }
-
-  return fragmentArr.join('');
+  return prefix;
 }
