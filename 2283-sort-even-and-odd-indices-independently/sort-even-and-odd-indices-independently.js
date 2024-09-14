@@ -6,26 +6,22 @@ function sortEvenOdd(nums) {
   let oddIndex = [];
   let evenIndex = [];
   let combined = [];
-  if (nums.length <= 2) {
-    return nums;
-  } else {
-    for (var num in nums) {
-      if (num % 2 === 0) {
-        evenIndex.push(nums[num]);
-      } else {
-        oddIndex.push(nums[num]);
-      }
-    }
-    evenIndex.sort((a, b) => a - b);
-    oddIndex.sort((a, b) => b - a);
 
-    for (let i = 0; i < evenIndex.length || i < oddIndex.length; i++) {
-      combined.push(evenIndex[i]);
-      if (oddIndex[i] !== undefined) {
-        combined.push(oddIndex[i]);
-      }
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 2 === 0) {
+      evenIndex.push(nums[i]);
+    } else {
+      oddIndex.push(nums[i]);
     }
   }
+  evenIndex.sort((a, b) => a - b);
+  oddIndex.sort((a, b) => b - a);
 
+  for (let i = 0; i < nums.length/2; i++) {
+    combined.push(evenIndex[i]);
+    if (oddIndex[i]) {
+      combined.push(oddIndex[i]);
+    }
+  }
   return combined;
 }
