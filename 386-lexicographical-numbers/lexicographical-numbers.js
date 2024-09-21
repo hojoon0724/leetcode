@@ -5,11 +5,11 @@
 function lexicalOrder(n) {
   const output = [];
   checkOtherInts(1);
-  console.log(output);
+
   return output;
 
   function checkOtherInts(current) {
-    console.log(current);
+
     if (current > n) return;
     output.push(current);
     checkOtherInts(current * 10);
